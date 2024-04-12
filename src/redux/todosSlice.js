@@ -9,10 +9,10 @@ const todosSlice = createSlice({
   initialState: [],
   reducers: {
     addTodo: (state, action) => {
-      state.push({ id: Date.now(), text: action.payload });
+      state.push(action.payload);
     },
     removeTodo: (state, action) => {
-        state.filter(todo => todo.id !== action.payload);
+        return state.filter(todo => todo.id !== action.payload);
     },
   },
 });

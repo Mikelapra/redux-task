@@ -14,13 +14,15 @@ function App() {
   const dispatch = useDispatch();
 
   const handleAddTodo = () => {
-    dispatch(addTodo(input))
+    dispatch(addTodo({
+      id: Math.random(),
+      text: input
+    }
+
+    ))
   };
   
-  const handleRemoveTodo = id => {
-    dispatch(removeTodo(id));
-  };
-  
+
   
   return (
     <>
@@ -30,7 +32,7 @@ function App() {
         <input value={input} onChange={e => setInput(e.target.value)} />
         <button onClick={handleAddTodo}>Añadir tarea</button>
         {todos.map(todo => (
-        <li key={todo.id}>{todo.text}<button onClick={() => handleRemoveTodo(todos.id)}>Eliminar tarea</button></li>
+        <li key={todo.id}>{todo.text}<button onClick={() => dispatch(removeTodo(todo.id))}>Eliminar tarea</button></li>
         ))}
       </ul>
     
